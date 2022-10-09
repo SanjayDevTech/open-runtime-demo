@@ -37,10 +37,10 @@ fun validatePayload(payload: Payload): Boolean {
 fun main(req: RuntimeRequest, res: RuntimeResponse): RuntimeResponse {
 
     try {
-        val json: Map<String, Any>? =
+        val json: Map<String, Any> =
             gson.fromJson<Map<String, Any>>(req.payload, MutableMap::class.java)
                 ?: return res.json(mapOf("success" to false, "message" to "Invalid json data"))
-        val headers: Map<String, String>? =
+        val headers: Map<String, String> =
             gson.fromJson<Map<String, String>>(json!!["headers"].toString(), MutableMap::class.java)
                 ?: return res.json(mapOf("success" to false, "message" to "Invalid headers"))
         val payload =
